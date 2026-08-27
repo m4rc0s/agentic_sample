@@ -29,7 +29,7 @@ sequenceDiagram
     H->>A1: Solicita rascunho do plano conceitual (DDD)
     A1->>F: Gera epics/nome/plan.md (Entidades, Invariantes, Eventos)
     H->>F: Revisa e aprova o plan.md
-    A1->>F: Fatie o plan.md em epics/nome/tasks.md
+    A1->>F: Fatie o plan.md em epics/nome/tasks.md (definindo modelos físicos, DDL/migrations, adapters e testes)
     A2->>F: Executa tarefa atômica de tasks.md
     A2->>F: Escreve código consequencial em apps/ e roda suíte de testes
     A2->>F: Atualiza epics/nome/quick_status.md para Done
