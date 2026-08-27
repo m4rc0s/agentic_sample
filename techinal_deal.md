@@ -44,6 +44,14 @@ Os Agentes Autônomos **NUNCA** devem violar as seguintes regras:
   - `docs(spec): atualiza critérios de aceite do épico 01`
   - `test(core): adiciona teste unitário de invariante de saldo`
 
+* **Branches Git:** Nenhum trabalho entra no branch principal diretamente. Toda mudança nasce em um branch próprio e entra por *Pull Request*. O nome do branch segue o mesmo vocabulário dos commits: `<tipo>/<descrição-em-kebab-case>`.
+  - `docs/agentes-e-camadas-de-modelagem`
+  - `feat/fluxo-de-login-oauth`
+  - `fix/calculo-de-valor-liquido`
+* **Pull Requests:** O título do PR obedece ao mesmo padrão *Conventional Commits* aplicado às mensagens de commit:
+  - `docs: instrucoes universais de agentes e separacao dos niveis de modelagem`
+  - `feat(auth): adiciona fluxo de login com OAuth`
+
 ---
 
 ## 4. Estratégia de Testes e Validação

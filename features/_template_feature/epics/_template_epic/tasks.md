@@ -27,4 +27,5 @@
 
 ### Fase 4: Fechamento e Auditoria
 - [ ] **Task 4.1 — Atualização de Status:** Atualizar [`quick_status.md`](quick_status.md) local e global para `Done`.
-- [ ] **Task 4.2 — Git Commit:** Gerar commit semântico (Conventional Commits) registrando a entrega do épico.
+- [ ] **Task 4.2 — Git Commit:** Gerar commit semântico (Conventional Commits) em branch próprio registrando a entrega do épico.
+- [ ] **Task 4.3 — Pull Request:** Abrir o Pull Request para o branch principal e obter aprovação do Reviewer & QA.
