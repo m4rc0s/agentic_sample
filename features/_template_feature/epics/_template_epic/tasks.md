@@ -33,4 +33,5 @@
 
 ### Fase 5: Fechamento e Auditoria
 - [ ] **Task 5.1 — Atualização de Status:** Atualizar [`quick_status.md`](quick_status.md) local e global para `Done`.
-- [ ] **Task 5.2 — Git Commit:** Gerar commit semântico (Conventional Commits) registrando a entrega do épico.
+- [ ] **Task 5.2 — Git Commit:** Gerar commit semântico (Conventional Commits) em branch próprio registrando a entrega do épico.
+- [ ] **Task 5.3 — Pull Request:** Abrir o Pull Request para o branch principal e obter aprovação do Reviewer & QA.
