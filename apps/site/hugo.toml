@@ -1,0 +1,61 @@
+# Site configuration — Spec-Driven Development (Liquid)
+#
+# baseURL is deliberately neutral. Hosting and the product's own domain are a
+# captain's decision that has been deferred, so no provider URL is committed to
+# this repository. Override it at build time:
+#
+#   hugo --source apps/site --baseURL "https://example.org/"
+#
+# See features/01-fundacao-publicacao/index.md, section 6.2.
+baseURL = "/"
+
+title = "Spec-Driven Development (Liquid)"
+
+# Language prefix on every route from day one, even with a single active
+# language. Adding a language later must never require rewriting addresses.
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = true
+
+enableEmoji = true
+
+# Out of scope for the publication foundation. Sitemap, feeds and social cards
+# belong to feature 06; this product has no taxonomies. Emitting them here would
+# publish surface no feature has specified.
+disableKinds = ["taxonomy", "term", "rss", "sitemap"]
+
+# Build output is consequential and disposable: it never enters version control.
+publishDir = "public"
+
+[languages]
+  [languages.en]
+    locale = "en-US"
+    label = "English"
+    contentDir = "content/en"
+    weight = 1
+    title = "Spec-Driven Development (Liquid)"
+    [languages.en.params]
+      description = "The specification is the software. Source code is a consequence."
+    [languages.en.menus]
+      [[languages.en.menus.main]]
+        name = "Home"
+        pageRef = "/"
+        weight = 1
+      [[languages.en.menus.main]]
+        name = "Foundation Check"
+        pageRef = "/foundation-check"
+        weight = 2
+
+[markup]
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+  [markup.highlight]
+    noClasses = false
+    lineNos = false
+    tabWidth = 2
+  [markup.goldmark.renderer]
+    unsafe = false
+
+[params]
+  # Shown in the footer. Kept neutral: the product has no proper name yet.
+  repository = "https://github.com/m4rc0s/agentic_sample"

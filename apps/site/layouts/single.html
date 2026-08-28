@@ -1,0 +1,13 @@
+{{ define "main" }}
+{{- $toc := partial "toc.html" . -}}
+<div class="wrap">
+  <div class="layout__inner{{ if trim $toc " \n" }} has-toc{{ end }}">
+    <article class="prose">
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.lead }}<p class="page-lead">{{ . }}</p>{{ end }}
+      {{ .Content }}
+    </article>
+    {{ $toc }}
+  </div>
+</div>
+{{ end }}

@@ -1,0 +1,11 @@
+<footer class="site-footer">
+  <div class="wrap">
+    <p>The specification is the software. Source code is a consequence.</p>
+    <p>
+      Built with the method it documents.
+      {{- with .Site.Params.repository }}
+      <a href="{{ . }}">Repository</a>.
+      {{- end }}
+    </p>
+  </div>
+</footer>
