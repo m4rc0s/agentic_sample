@@ -1,0 +1,73 @@
+# Build and verify the publication foundation.
+#
+# This workflow builds apps/site and runs the publication invariant checker
+# over the built output. The job fails when the checker refuses.
+#
+# It deliberately does NOT deploy. Hosting is a captain's decision that has
+# been deferred, so no provider is configured and no provider URL is committed
+# to this repository. See features/01-fundacao-publicacao/index.md, section 6.2.
+# The delivery hook is marked below.
+
+name: site
+
+on:
+  push:
+    branches: ["**"]
+    paths:
+      - "apps/site/**"
+      - ".github/workflows/site.yml"
+  pull_request:
+    paths:
+      - "apps/site/**"
+      - ".github/workflows/site.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  # Pinned, and identical to the version approved in technical_agreement.md
+  # section 1. Never "latest": the checker must verify a reproducible build.
+  HUGO_VERSION: "0.165.0"
+
+jobs:
+  build-and-verify:
+    name: Build and verify publication invariants
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Install Hugo (extended, pinned)
+        run: |
+          set -euo pipefail
+          url="https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          curl -sSL -o /tmp/hugo.deb "$url"
+          sudo dpkg -i /tmp/hugo.deb
+          hugo version
+
+      - name: Build the site
+        run: hugo --source apps/site --minify
+
+      - name: Verify publication invariants (INV-01, INV-02)
+        # Not tolerant of failure: a refused checker refuses the job.
+        run: bash apps/site/scripts/check_invariants.sh apps/site/public
+
+      - name: Keep the built output as an artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-${{ github.sha }}
+          path: apps/site/public
+          retention-days: 7
+
+      # ---------------------------------------------------------------------
+      # DELIVERY HOOK — intentionally empty.
+      #
+      # When the hosting decision is taken, the delivery step goes here, after
+      # the checker and never before it: nothing is delivered that has not been
+      # verified. Whatever provider is chosen, the base address is supplied at
+      # build time (hugo --source apps/site --baseURL "<address>"), so adopting
+      # one changes this workflow and nothing else in the repository.
+      #
+      # Until then this workflow builds and verifies, and stops there.
+      # ---------------------------------------------------------------------
