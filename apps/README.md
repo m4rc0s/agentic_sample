@@ -30,5 +30,5 @@ apps/
 
 1. Crie uma subpasta com o identificador em kebab-case: `mkdir apps/meu-servico`
 2. Copie o template: `cp apps/_template_app/app_liquid.md apps/meu-servico/`
-3. Preencha o `app_liquid.md` com a stack homologada em [`techinal_deal.md`](../techinal_deal.md).
+3. Preencha o `app_liquid.md` com a stack homologada em [`technical_agreement.md`](../technical_agreement.md).
 4. Peça ao agente para gerar o código inicial (scaffold de código) guiado pelo manifesto.

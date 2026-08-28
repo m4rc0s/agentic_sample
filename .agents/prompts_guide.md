@@ -13,7 +13,7 @@ Com base na ideia do produto [Descrever a ideia geral em 2 parágrafos], atue co
 Preencha e refine os arquivos de governança na raiz:
 1. product_vision.md (Declaração de visão, problema central, personas e métricas)
 2. architecture.md (C4 Model conceitual e Bounded Contexts)
-3. techinal_deal.md (Stack homologada e restrições inegociáveis)
+3. technical_agreement.md (Stack homologada e restrições inegociáveis)
 4. roadmap.md (Fases 0, 1 e 2)
 
 Mantenha o DDD estritamente conceitual sem acoplamento a ORMs ou tabelas SQL.

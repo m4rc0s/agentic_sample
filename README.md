@@ -43,7 +43,7 @@ O Liquid bebe das melhores práticas abertas da comunidade global de engenharia 
 ├── product_vision.md        # Visão macro, objetivos de negócio e problema central
 ├── roadmap.md               # Direcionamento estratégico e marcos globais do produto
 ├── architecture.md          # Arquitetura sistêmica (C4 Model abstrato e integrações)
-├── techinal_deal.md         # Acordos técnicos, restrições e algemas da IA
+├── technical_agreement.md         # Acordos técnicos, restrições e algemas da IA
 ├── team_playbook.md         # Regras de engajamento, ritos e fluxo de trabalho
 ├── quick_status.md          # Painel de controle executivo global do produto
 │
@@ -97,7 +97,7 @@ git init
 Preencha ou instrua o agente a preencher os arquivos de governança na raiz:
 1. `product_vision.md`: Defina o problema e o valor de negócio.
 2. `architecture.md`: Defina o modelo arquitetural de alto nível.
-3. `techinal_deal.md`: Defina a stack permitida e restrições.
+3. `technical_agreement.md`: Defina a stack permitida e restrições.
 4. `roadmap.md`: Defina as fases macro do produto.
 
 ### 3. Subindo o Contêiner Isolado e Acionando o Agente (Hermes / Claude / Antigravity)
@@ -106,7 +106,7 @@ Inicie a sessão do agente apontando o volume **exclusivamente** para a pasta do
 Envie o comando de ativação (disponível em [`.agents/hermes_bootstrap.md`](file:///.agents/hermes_bootstrap.md)):
 
 ```text
-"Este é um workspace Liquid v1 recém-inicializado. Leia todos os arquivos de governança na raiz (index.md, product_vision.md, architecture.md, techinal_deal.md) para assimilar o domínio deste produto. Confirme assim que estiver contextualizado para começarmos a delinear nossa primeira feature de negócio."
+"Este é um workspace Liquid v1 recém-inicializado. Leia todos os arquivos de governança na raiz (index.md, product_vision.md, architecture.md, technical_agreement.md) para assimilar o domínio deste produto. Confirme assim que estiver contextualizado para começarmos a delinear nossa primeira feature de negócio."
 ```
 
 ### 4. Criando Novas Features e Épicos
@@ -129,7 +129,7 @@ chmod +x scripts/scaffold.sh
 
 ```mermaid
 flowchart TD
-    A[1. Governança Raiz: product_vision + architecture + techinal_deal] --> B[2. Definição de Feature: features/nome/index.md]
+    A[1. Governança Raiz: product_vision + architecture + technical_agreement] --> B[2. Definição de Feature: features/nome/index.md]
     B --> C[3. Modelagem de Domínio: epics/nome/plan.md - DDD Conceitual]
     C --> D[4. Validação Humana: Tech Lead / Arquiteto revisa]
     D --> E[5. Fila Operacional: epics/nome/tasks.md]

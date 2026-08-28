@@ -22,5 +22,5 @@
 
 ## ⚠️ Riscos e Suposições
 
-* **Suposição 1:** O modelo de dados do domínio não depende de tecnologias externas não homologadas em [`techinal_deal.md`](../../../../techinal_deal.md).
+* **Suposição 1:** O modelo de dados do domínio não depende de tecnologias externas não homologadas em [`technical_agreement.md`](../../../../technical_agreement.md).
 * **Risco 1:** Mudança de escopo sem atualização prévia no `index.md` do épico.

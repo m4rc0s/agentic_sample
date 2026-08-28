@@ -52,7 +52,7 @@ Abaixo estão os pontos de ancoragem centrais deste workspace:
 | [`product_vision.md`](product_vision.md) | Visão macro, problema central, público-alvo, modelo de negócio e métricas de sucesso. |
 | [`roadmap.md`](roadmap.md) | Direcionamento estratégico, fases de maturidade e marcos globais de entrega. |
 | [`architecture.md`](architecture.md) | Padrões sistêmicos, C4 Model abstrato, fronteiras de contexto e integrações. |
-| [`techinal_deal.md`](techinal_deal.md) | Acordos técnicos, restrições inegociáveis, stack homologada e algemas da IA. |
+| [`technical_agreement.md`](technical_agreement.md) | Acordos técnicos, restrições inegociáveis, stack homologada e algemas da IA. |
 | [`team_playbook.md`](team_playbook.md) | Regras de engajamento, rituais com agentes, critérios de aceitação e Definition of Done. |
 | [`quick_status.md`](quick_status.md) | Painel executivo de status em tempo real (Ready, WIP, Blocked, Done). |
 | [`assets/`](assets/README.md) | Repositório de documentos visuais, wireframes, esquemas e assets de design. |
@@ -63,7 +63,7 @@ Abaixo estão os pontos de ancoragem centrais deste workspace:
 
 ## 4. O Fluxo de Trabalho do Agente de IA
 
-1. **Contextualização:** O agente lê `index.md`, `product_vision.md`, `architecture.md` e `techinal_deal.md`.
+1. **Contextualização:** O agente lê `index.md`, `product_vision.md`, `architecture.md` e `technical_agreement.md`.
 2. **Definição de Feature:** Criação da pasta `features/[nome_da_feature]/index.md` delimitando o valor de negócio.
 3. **Modelagem de Épico (`plan.md`):** O agente propõe o DDD conceitual (Entidades, Invariantes, Eventos). O Tech Lead / Arquiteto revisa.
 4. **Fila Operacional (`tasks.md`):** O plano aprovado é fatiado em tarefas atômicas sequenciais.

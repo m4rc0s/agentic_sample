@@ -1,4 +1,4 @@
-# Technical Deal & Agent Guardrails: [Nome do Produto]
+# Technical Agreement & Agent Guardrails: [Nome do Produto]
 
 > **Instruções:** Este arquivo é o contrato técnico inegociável entre o Tech Lead humano e os Agentes Autônomos de IA. Qualquer código gerado em `apps/` DEVE obedecer estritamente às restrições e padrões aqui estabelecidos.
 

@@ -54,6 +54,6 @@ Um Épico só pode ter sua execução de código iniciada se satisfizer o seguin
 Um Épico só é considerado concluído (`Done`) quando:
 - [ ] 100% das tarefas listadas em `tasks.md` estiverem marcadas como completadas `[x]`.
 - [ ] Todos os testes unitários e de integração passarem sem erros.
-- [ ] Nenhum código violar os acordos técnicos de [`techinal_deal.md`](techinal_deal.md).
+- [ ] Nenhum código violar os acordos técnicos de [`technical_agreement.md`](technical_agreement.md).
 - [ ] `quick_status.md` local do épico e da feature foram atualizados com o rastro de auditoria.
 - [ ] Commit Git estruturado no padrão Conventional Commits.
