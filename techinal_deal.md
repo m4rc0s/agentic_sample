@@ -6,13 +6,27 @@
 
 ## 1. Stack Tecnológica Homologada
 
+O produto materializado hoje em `apps/` é um **site estático**: conteúdo Markdown compilado em HTML em tempo de build, servido sem processo de servidor. Camadas que não existem neste produto estão registradas honestamente como **Não aplicável** — declarar tecnologia inexistente para preencher a tabela violaria o próprio método.
+
 | Camada | Tecnologia Homologada | Versão Alvo | Motivo / Restrição |
 | :--- | :--- | :--- | :--- |
-| **Backend Primário** | [ex: Kotlin (JVM) / Rust / Python / TypeScript / Go] | [ex: Kotlin 2.0 / Node 20+] | [Definição de padrão e robustez] |
-| **Framework Web** | [ex: Spring Boot 3 / Axum / FastAPI / Fastify] | [Versão] | [Padrão de API REST] |
-| **Banco de Dados** | [ex: PostgreSQL / SQLite / Redis] | [Versão] | [Armazenamento relacional e cache] |
-| **Frontend / UI** | [ex: Next.js / React / Vue / Flutter / CLI] | [Versão] | [Interface com usuário] |
-| **Testes** | [ex: JUnit 5 / Pytest / Vitest / Cargo test] | [Versão] | [Cobertura de testes automatizados] |
+| **Gerador / Framework** | Hugo (`extended`) | `0.165.0 extended` | Decisão do capitão. Binário único, sem gerenciador de pacotes e sem dependências de runtime — a leitura mais literal do pilar de Isolamento Absoluto por Workspace. A edição `extended` é a homologada e a exigida no CI. |
+| **Backend Primário** | **Não aplicável** | — | Site estático: nenhum processo de servidor, nenhuma API, nenhuma execução em tempo de requisição. |
+| **Framework Web** | **Não aplicável** | — | Decorre da linha acima: não há camada HTTP própria a ser servida. |
+| **Banco de Dados** | **Não aplicável** | — | Nenhum estado é persistido ou mutado. Todo conteúdo é arquivo versionado no Git. |
+| **Frontend / UI** | Templates Hugo (Go templates) + CSS puro escrito à mão | Go templates de `0.165.0`; CSS conforme suporte de navegador corrente | **Sem pré-processador, sem framework CSS e sem `node_modules`.** Nenhuma dependência de CDN externa: todo asset é servido do próprio site. |
+| **Testes** | Checker de invariantes de publicação em Bash + utilitários POSIX | Bash 4+; `grep`, `sed`, `sort`, `find` (POSIX) | **Dependência zero.** Ver a nota de homologação abaixo. |
+
+### 1.1 Nota de homologação: por que o checker é Bash com dependência zero
+
+Este produto não tem invariantes de negócio (não há transação, mutação de estado nem ciclo de vida de entidade). O que ele tem são **invariantes de publicação** verificáveis, e são elas que cumprem, aqui, o papel da suíte de testes exigida pelo §4 e pelo DoD do [`team_playbook.md`](team_playbook.md):
+
+* **INV-01 (Âncora única):** toda página publicada declara exatamente uma URL canônica, e nenhuma canônica se repete entre páginas distintas.
+* **INV-02 (Integridade referencial):** nenhuma página referencia arquivo de governança, feature ou épico que não exista de fato no repositório ou na saída construída.
+
+A escolha de **Bash + utilitários POSIX, com dependência zero**, é derivada direta da escolha do capitão por Hugo. Adotar Hugo pelo argumento do binário único e então introduzir um runtime de testes com gerenciador de pacotes próprio anularia exatamente o isolamento que motivou a escolha. O verificador roda com o que qualquer ambiente POSIX já oferece, e a cadeia de ferramentas do produto inteiro permanece: **um binário (Hugo) e o shell.**
+
+Esta homologação fica registrada aqui — e não escondida dentro de um `tasks.md` — porque é um acordo técnico do produto, não um detalhe de execução de tarefa.
 
 ---
 
