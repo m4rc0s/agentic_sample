@@ -20,6 +20,7 @@
 | Feature | Épico Ativo | Responsável | Status | Bloqueios |
 | :--- | :--- | :--- | :--- | :--- |
 | `[template_feature]` | `_template_epic` | Hermes / Claude | `Ready` | Nenhum |
+| [`01-fundacao-publicacao`](features/01-fundacao-publicacao/) | `04-pipeline-de-publicacao-e-verificacao` | Claude | `Done` | Nenhum |
 
 *Legenda de Status: `Ready` (Pronto para iniciar) | `WIP` (Em andamento) | `Blocked` (Bloqueado) | `Done` (Concluído)*
 
