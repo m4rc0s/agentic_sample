@@ -53,6 +53,17 @@ say()  { printf '%s\n' "$*"; }
 fail() { printf '  ✗ %s\n' "$*"; violations=$((violations + 1)); }
 pass() { printf '  ✓ %s\n' "$*"; }
 
+# Emit one HTML tag per line, with unquoted attribute values quoted.
+#
+# The published artifact is minified, and minified HTML drops attribute quotes:
+# `<link rel=canonical href=/en/>`. Matching only the quoted form would make the
+# checker blind to the very output that gets delivered. Normalising per tag --
+# rather than over the whole file -- keeps script bodies out of the way.
+tags_of() {
+  grep -o '<[a-zA-Z][a-zA-Z0-9]*[^>]*>' "$1" 2>/dev/null \
+    | sed -E 's/=([^"'"'"' >][^ >]*)/="\1"/g' || true
+}
+
 cannot_verify() {
   say ""
   say "VERIFICATION COULD NOT BE PERFORMED"
@@ -95,12 +106,15 @@ while IFS= read -r page; do
   # A redirect stub is a pointer, not a published page: it legitimately carries
   # the canonical anchor of its target. It is held to INV-01.a but excluded
   # from the INV-01.b uniqueness set.
+  tags="$WORK_DIR/tags"
+  tags_of "$page" > "$tags"
+
   is_redirect=0
-  if grep -qi 'http-equiv="refresh"' "$page"; then
+  if grep -qi 'http-equiv="refresh"' "$tags"; then
     is_redirect=1
   fi
 
-  count="$(grep -c 'rel="canonical"' "$page" || true)"
+  count="$(grep -c 'rel="canonical"' "$tags" || true)"
 
   if [ "$count" -eq 0 ]; then
     fail "INV-01.a  $rel declares no canonical anchor (expected exactly 1)"
@@ -110,8 +124,8 @@ while IFS= read -r page; do
     continue
   fi
 
-  canonical="$(grep -o 'rel="canonical"[^>]*href="[^"]*"' "$page" \
-    | sed -e 's/.*href="//' -e 's/".*//' | head -n 1)"
+  canonical="$(grep 'rel="canonical"' "$tags" \
+    | grep -o 'href="[^"]*"' | sed -e 's/^href="//' -e 's/"$//' | head -n 1)"
 
   if [ -z "$canonical" ]; then
     fail "INV-01.a  $rel declares a canonical anchor with no address"
@@ -125,6 +139,12 @@ while IFS= read -r page; do
 done < "$PAGES"
 
 if [ "$pages_examined" -eq 0 ]; then
+  if [ "$violations" -gt 0 ]; then
+    say ""
+    say "REFUSED — $violations violation(s); no page declared a usable canonical anchor."
+    say "Delivery must not proceed."
+    exit 1
+  fi
   cannot_verify "Every HTML file found is a redirect stub; no published page was examined."
 fi
 
@@ -158,7 +178,7 @@ while IFS= read -r page; do
   page_dir="$(dirname "$page")"
 
   # --- INV-02.a: internal navigation references resolve to built routes -----
-  { grep -o 'href="[^"]*"' "$page" || true; } \
+  { tags_of "$page" | grep -o 'href="[^"]*"' || true; } \
     | sed -e 's/^href="//' -e 's/"$//' \
     | while IFS= read -r href; do
         # Out of scope for this invariant: external addresses, mail and phone
