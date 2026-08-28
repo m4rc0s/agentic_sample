@@ -37,7 +37,7 @@ Os Agentes Autônomos **NUNCA** devem violar as seguintes regras:
 ### 🚫 Ações Proibidas:
 1. **NÃO instalar pacotes ou dependências não homologadas** sem autorização explícita ou registro prévio no manifesto [`apps/*/app_liquid.md`](apps/).
 2. **NÃO expor chaves de API, senhas ou tokens** hardcoded em código ou markdowns. Utilize variáveis de ambiente (`.env.example`).
-3. **NÃO implementar código sem testes automatizados** para as regras de negócio invariantes descritas em [`plan.md`](features/).
+3. **NÃO implementar código sem testes automatizados** para as invariantes descritas em [`plan.md`](features/). Quando o `plan.md` **declara explicitamente ausência de domínio conceitual**, a exigência se transfere — sem afrouxar — para as **invariantes do artefato entregue** que aquele `plan.md` enuncia (ver §4.1). Código sem nenhuma invariante verificada permanece proibido.
 4. **NÃO alterar contratos de API sem atualizar a spec** correspondente da feature.
 5. **NÃO realizar "vibe coding" (criação arbitrária de arquivos fora de `apps/` ou sem tarefa associada em `tasks.md`).**
 
@@ -69,3 +69,19 @@ Os Agentes Autônomos **NUNCA** devem violar as seguintes regras:
 ```
 
 * **Critério de Aceite Técnico:** Um épico só pode ser marcado como `Done` em `quick_status.md` se todos os testes automatizados da suíte passarem com código de saída 0.
+
+### 4.1 Quando o `plan.md` declara ausência de domínio conceitual
+
+A pirâmide acima pressupõe um domínio com regras de negócio invariantes. Nem todo produto tem um. Produtos e épicos sem transação, sem mutação de estado e sem ciclo de vida de entidade não têm invariante de negócio a cobrir — e forçar a pirâmide nesses casos só produz teste de fachada sobre invariante fabricada.
+
+Para esses casos vale a regra geral estabelecida no [`team_playbook.md`](team_playbook.md) §4.1:
+
+```text
+[ Checker de Invariantes do Artefato ] ──► 100% das invariantes enunciadas no plan.md
+[ Verificação de Integridade da Saída ] ──► Referências, âncoras e metadados da entrega
+```
+
+* **A suíte verde continua obrigatória.** Muda o objeto verificado, não o rigor.
+* **O checker é parte da suíte**, não um script auxiliar: roda no processo de integração contínua, reporta qual invariante falhou e em qual arquivo, e **termina com código de saída diferente de zero** em qualquer violação.
+* **Falhar em silêncio é violação de acordo técnico.** Um verificador que passa quando não conseguiu verificar é pior do que nenhum: ele produz confiança injustificada. O checker deve reprovar quando não consegue concluir a verificação.
+* **Critério de Aceite Técnico (equivalente):** um épico cujo `plan.md` declara ausência de domínio só pode ser marcado como `Done` se o checker das invariantes que ele enuncia passar com código de saída 0 — e se existir prova de que esse checker **reprova** diante de violação real.
