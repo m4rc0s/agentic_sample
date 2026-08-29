@@ -1,0 +1,9 @@
+{{/* Rendered only when the page has enough headings to be worth summarising.
+     Never leaves an empty container behind. */}}
+{{- $toc := .TableOfContents -}}
+{{- if and (gt (len $toc) 40) (gt (len (findRE "<li" $toc)) 1) }}
+<nav class="toc" aria-labelledby="toc-title">
+  <p class="toc__title" id="toc-title">On this page</p>
+  {{ $toc }}
+</nav>
+{{- end }}

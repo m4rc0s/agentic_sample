@@ -18,7 +18,7 @@
 * **Objetivo:** Estabelecer o domínio conceitual, contratos técnicos, acordos de agentes e scaffold inicial.
 * **Status:** `[WIP / Em Andamento]`
 * **Entregáveis Chave:**
-  - [x] Definição de `product_vision.md`, `architecture.md` e `techinal_deal.md`.
+  - [x] Definição de `product_vision.md`, `architecture.md` e `technical_agreement.md`.
   - [ ] Alinhamento do C4 Model e Bounded Contexts.
   - [ ] Configuração do workspace isolado e regras para os agentes.
 

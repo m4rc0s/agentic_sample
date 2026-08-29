@@ -1,0 +1,14 @@
+{{- /* Figure / diagram with a caption. Accepts an image or inline content. */ -}}
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" | default "" -}}
+{{- $caption := .Get "caption" | default "" -}}
+<figure>
+  {{- with $src }}
+  <img src="{{ . }}" alt="{{ $alt }}">
+  {{- else }}
+  {{ .Inner | .Page.RenderString (dict "display" "block") }}
+  {{- end }}
+  {{- with $caption }}
+  <figcaption>{{ . | $.Page.RenderString }}</figcaption>
+  {{- end }}
+</figure>

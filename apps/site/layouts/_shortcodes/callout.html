@@ -1,0 +1,7 @@
+{{- /* Callout. Meaning is carried by the text label, never by colour alone. */ -}}
+{{- $kind := .Get "kind" | default "note" -}}
+{{- $label := .Get "label" | default (cond (eq $kind "warning") "Warning" "Note") -}}
+<aside class="callout{{ if eq $kind "warning" }} callout--warning{{ end }}">
+  <b class="callout__label">{{ $label }}</b>
+  {{ .Inner | .Page.RenderString (dict "display" "block") }}
+</aside>

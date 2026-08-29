@@ -1,0 +1,30 @@
+{{- $title := cond .IsHome .Site.Title (printf "%s — %s" .Title .Site.Title) -}}
+{{- $description := "" -}}
+{{- with .Description }}{{ $description = . }}
+{{- else }}{{ with .Site.Params.description }}{{ $description = . }}
+{{- else }}{{ $description = .Summary | plainify | truncate 160 }}{{ end }}{{ end -}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $description }}">
+{{/* INV-01: exactly one canonical anchor per page, derived from the route.
+     No page declares its canonical by hand. */}}
+<link rel="canonical" href="{{ .Permalink }}">
+{{- range .AllTranslations }}
+<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+{{- end }}
+{{ $css := resources.Get "css/main.css" | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+<script>
+  /* Applies the stored display-mode choice before first paint, so switching
+     modes never flashes. Vanilla JS, no library. The page renders correctly
+     with this script blocked: prefers-color-scheme still applies. */
+  (function () {
+    try {
+      var stored = localStorage.getItem("theme");
+      if (stored === "dark" || stored === "light") {
+        document.documentElement.setAttribute("data-theme", stored);
+      }
+    } catch (e) { /* storage unavailable: fall back to prefers-color-scheme */ }
+  })();
+</script>

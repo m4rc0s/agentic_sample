@@ -56,3 +56,8 @@ yarn-debug.log*
 yarn-error.log*
 tmp/
 temp/
+
+# Hugo Artifacts (Consequence Layer)
+public/
+resources/_gen/
+.hugo_build.lock
