@@ -12,7 +12,7 @@ A Inteligência Artificial não resolveu a arquitetura de software; ela automati
 
 1. **A Documentação é o Contrato Executável:** O patrimônio duradouro do produto é a intenção de negócio, o domínio e as especificações imutáveis escritas em Markdown estruturado.
 2. **O Código é Consequência:** O código físico gerado na pasta `apps/` é descartável e regenerável a qualquer momento a partir das specs.
-3. **DDD Estritamente Conceitual:** Eliminamos a modelagem pesada acoplada a bancos/ORMs. O DDD foca em *Bounded Contexts*, *Linguagem Ubíqua*, *Entidades/Invariantes* e *Eventos de Domínio*.
+3. **DDD Estritamente Conceitual no `plan.md`:** Eliminamos a modelagem pesada acoplada a bancos/ORMs no desenho de domínio. O DDD foca em *Bounded Contexts*, *Linguagem Ubíqua*, *Entidades/Invariantes* e *Eventos de Domínio*. Modelos físicos (tabelas, DDL, migrations, ORM) são planejados granularmente na fila de tarefas (`tasks.md`) e implementados na camada de adaptadores.
 
 ---
 
@@ -45,6 +45,8 @@ O Liquid bebe das melhores práticas abertas da comunidade global de engenharia 
 ├── architecture.md          # Arquitetura sistêmica (C4 Model abstrato e integrações)
 ├── technical_agreement.md         # Acordos técnicos, restrições e algemas da IA
 ├── team_playbook.md         # Regras de engajamento, ritos e fluxo de trabalho
+├── AGENTS.md                # Instruções universais para agentes autônomos de IA
+├── CLAUDE.md                # Bootstrap de inicialização nativo para o Claude Code
 ├── quick_status.md          # Painel de controle executivo global do produto
 │
 ├── assets/                  # Wireframes, diagramas visuais e documentos de referência

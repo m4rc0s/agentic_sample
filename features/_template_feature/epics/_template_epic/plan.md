@@ -1,7 +1,7 @@
 # Domain Enabler (Conceptual DDD Plan): [Nome do Épico]
 
 > **Instruções para o Agente Hermes / Modelador de Domínio:**  
-> Este documento é o coração conceitual do épico. **NÃO escreva esquemas de banco de dados, ORMs ou SQL aqui.** Modele o domínio estritamente no nível conceitual (Entidades, Invariantes e Eventos de Domínio).
+> Este documento é o coração conceitual do épico. **NÃO escreva esquemas de banco de dados, tabelas SQL ou mapeamentos ORM aqui.** Modele o domínio estritamente no nível de negócio (Entidades, Value Objects, Invariantes e Eventos de Domínio). Os modelos físicos (tabelas, DDL, migrations, DTOs e adapters) serão definidos na etapa de fatiamento operacional em `tasks.md`.
 
 ---
 
