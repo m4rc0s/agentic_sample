@@ -1,0 +1,11 @@
+version: "1.0"
+workspace:
+  path: "."
+  mount: "/workspace"
+panes:
+  - name: "Hermes (Architect)"
+    command: "hermes --trust"
+  - name: "Claude (Executor)"
+    command: "claude"
+  - name: "Validator & Git"
+    command: "watch -n 5 'git status'"

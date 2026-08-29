@@ -10,16 +10,15 @@ Deixamos de ser artesãos de sintaxe para atuar como modeladores de domínio. O 
 
 ## 1. O Novo Paradigma do Domain-Driven Design (DDD)
 
-Na v1 do SDD, **removemos o uso da modelagem de dados engessada nos moldes de implementação do DDD**. O DDD deixa de ser um mapa de tabelas ou esquemas de banco de dados e passa a ser aplicado **fortemente a nível conceitual**.
+Na v1 do SDD, **removemos o uso da modelagem de dados engessada nos moldes tradicionais do DDD dirigida a banco de dados (*Database-Driven Design*)**. O DDD deixa de ser um mapa de tabelas ou esquemas SQL e passa a ser aplicado **fortemente a nível conceitual**.
 
-Na especificação, o foco absoluto recai sobre:
+### Separação de Níveis de Modelagem:
 
-* **Bounded Contexts:** Os limites de onde uma regra de negócio começa e termina.
-* **Linguagem Ubíqua:** Os termos exatos e o glossário que o negócio e os agentes de IA devem utilizar em conjunto.
-* **Entidades e Regras de Negócio:** O comportamento central invariante do sistema.
-* **Eventos de Domínio:** O que acontece e quem deve reagir quando um estado crítico muda.
+1. **Definição de Produto & Negócio (`index.md` / PRD):** Foco em *Bounded Contexts*, *Linguagem Ubíqua*, atores, personas e critérios de aceitação (Gherkin/BDD).
+2. **Domínio Conceitual (`plan.md`):** Foco em entidades ricas, Value Objects, tipos de dados de domínio (ex: `Money`, `CPF`, `StatusPedido`), invariantes de negócio e eventos de domínio — **sem acoplamento a tabelas SQL, ORMs ou frameworks**.
+3. **Implementação & Persistência Física (`tasks.md` & `apps/`):** É **aqui**, no planejamento granular e na implementação das tasks, que são definidos os modelos físicos: tabelas de banco de dados, schemas DDL, migrations, índices, mapeamentos ORM/DAO e DTOs de transporte de API.
 
-Os detalhes de implementação (*downstream*, persistência, escolha de ORM, esquemas SQL) não são relevantes para a definição deste método. O papel do humano é desenhar e guiar a intenção do negócio; o papel do agente de IA é deduzir a melhor implementação técnica para satisfazer essa intenção.
+Essa separação garante que a inteligência do negócio nunca fique refém de detalhes de infraestrutura ou amarrada a um banco de dados específico, permitindo que a camada de código em `apps/` seja tratada como consequencial e descartável.
 
 ---
 
@@ -54,6 +53,8 @@ Abaixo estão os pontos de ancoragem centrais deste workspace:
 | [`architecture.md`](architecture.md) | Padrões sistêmicos, C4 Model abstrato, fronteiras de contexto e integrações. |
 | [`techinal_deal.md`](techinal_deal.md) | Acordos técnicos, restrições inegociáveis, stack homologada e algemas da IA. |
 | [`team_playbook.md`](team_playbook.md) | Regras de engajamento, rituais com agentes, critérios de aceitação e Definition of Done. |
+| [`AGENTS.md`](AGENTS.md) | Instruções universais e princípios inegociáveis para todos os agentes de IA. |
+| [`CLAUDE.md`](CLAUDE.md) | Bootstrap de inicialização e proxy nativo para sessões do Claude Code. |
 | [`quick_status.md`](quick_status.md) | Painel executivo de status em tempo real (Ready, WIP, Blocked, Done). |
 | [`assets/`](assets/README.md) | Repositório de documentos visuais, wireframes, esquemas e assets de design. |
 | [`apps/`](apps/README.md) | Camada física: códigos consequenciais e manifestos `app_liquid.md`. |
