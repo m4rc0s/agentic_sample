@@ -21,6 +21,7 @@
 | :--- | :--- | :--- | :--- | :--- |
 | `[template_feature]` | `_template_epic` | Hermes / Claude | `Ready` | Nenhum |
 | [`01-fundacao-publicacao`](features/01-fundacao-publicacao/) | `04-pipeline-de-publicacao-e-verificacao` | Claude | `Done` | Nenhum |
+| [`02-narrativa-de-entrada`](features/02-narrativa-de-entrada/) | `03-chamadas-para-acao-e-provas` | Claude | `Done` | Nenhum |
 | [`03-manual-do-metodo`](features/03-manual-do-metodo/) | `05-posicionamento-no-ecossistema` | Claude | `Done` | Nenhum |
 
 *Legenda de Status: `Ready` (Pronto para iniciar) | `WIP` (Em andamento) | `Blocked` (Bloqueado) | `Done` (Concluído)*
@@ -37,3 +38,4 @@
 
 - **[Data Inicial]:** Inicialização do template base do repositório (Liquid v1).
 - **2026-08-29:** Feature `03-manual-do-metodo` concluída, empilhada sobre `01-fundacao-publicacao`. Publica o glossário canônico da Linguagem Ubíqua do método (o único domínio conceitual real do produto além da própria fundação) e o manual completo — paradigma, ciclo de vida e papéis, anatomia do workspace e Algemas da IA, e posicionamento no ecossistema — em `apps/site/content/en/method/`. Desbloqueia as features `02`, `04`, `05` e `06`/épico `03`, que dependiam do glossário existir antes de publicar conteúdo (INV-03).
+- **2026-08-29:** Feature `02-narrativa-de-entrada` concluída, empilhada sobre `03-manual-do-metodo`. Reescreve a home (`apps/site/content/en/_index.md`) por completo, substituindo a página de exemplo provisória da feature `01`: a tese de abertura do método, os três pilares (nomes exatos de `README.md:21-25`) e o ciclo de sete etapas (`README.md:130-138`), e duas chamadas para ação com destino real. As CTAs para as features `04` e `05`, que ainda não existem, foram deliberadamente omitidas — decisão do capitão registrada em `features/02-narrativa-de-entrada/index.md` §6.1 — em vez de apontar para um placeholder ou violar INV-02.
