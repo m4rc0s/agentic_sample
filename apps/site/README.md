@@ -20,6 +20,7 @@ Todos executados a partir da **raiz do repositório**.
 | **Pré-visualizar** localmente | `hugo server --source apps/site` |
 | **Construir** | `hugo --source apps/site` |
 | **Verificar** INV-01 e INV-02 | `bash apps/site/scripts/check_invariants.sh apps/site/public` |
+| **Verificar** INV-03.b (vocabulário) | `bash apps/site/scripts/check_vocabulary.sh apps/site/public` |
 | Construir com endereço definido | `hugo --source apps/site --baseURL "https://exemplo.org/"` |
 
 A pré-visualização sobe em `http://localhost:1313/` e recarrega a cada alteração.
@@ -33,15 +34,24 @@ outra dependência — não há gerenciador de pacotes, não há `node_modules` 
 
 ## Verificação
 
-O checker [`scripts/check_invariants.sh`](scripts/check_invariants.sh) é parte da
-**suíte de verificação** do produto, não um utilitário auxiliar: é ele que
-autoriza ou reprova a entrega, conforme
+Dois checkers compõem a **suíte de verificação** do produto — nenhum dos dois
+é utilitário auxiliar: são eles que autorizam ou reprovam a entrega, conforme
 [`team_playbook.md`](../../team_playbook.md) §4.1.
+
+[`scripts/check_invariants.sh`](scripts/check_invariants.sh) verifica:
 
 | Invariante | O que exige |
 | :--- | :--- |
 | **INV-01** Âncora única | Toda página publicada declara **exatamente uma** âncora canônica, e nenhuma âncora se repete entre páginas distintas. |
 | **INV-02** Integridade referencial | Toda referência interna resolve para uma rota construída, e toda referência a documento de governança, feature ou épico resolve para um arquivo existente no repositório. |
+
+[`scripts/check_vocabulary.sh`](scripts/check_vocabulary.sh) verifica a metade
+estruturalmente checável de INV-03 (vocabulário único), definida em
+[`features/03-manual-do-metodo/epics/01-modelo-de-conteudo-e-linguagem-ubiqua/plan.md`](../../features/03-manual-do-metodo/epics/01-modelo-de-conteudo-e-linguagem-ubiqua/plan.md):
+nenhum sinônimo proibido do catálogo curado em
+[`scripts/forbidden_synonyms.tsv`](scripts/forbidden_synonyms.tsv) aparece em
+página publicada, exceto a página do glossário, que os documenta por
+definição.
 
 Códigos de saída:
 
@@ -93,7 +103,9 @@ apps/site/
 │   ├── _shortcodes/       # callout, figure
 │   └── _markup/           # Render hook de tabela
 └── scripts/
-    └── check_invariants.sh  # Checker de INV-01 e INV-02
+    ├── check_invariants.sh    # Checker de INV-01 e INV-02
+    ├── check_vocabulary.sh    # Checker de INV-03.b (vocabulário)
+    └── forbidden_synonyms.tsv # Catálogo curado de sinônimos proibidos
 ```
 
 A saída da construção (`public/`) é **descartável e regenerável**, e por isso

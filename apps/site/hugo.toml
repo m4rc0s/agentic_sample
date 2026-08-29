@@ -44,6 +44,10 @@ publishDir = "public"
         name = "Foundation Check"
         pageRef = "/foundation-check"
         weight = 2
+      [[languages.en.menus.main]]
+        name = "The Method"
+        pageRef = "/method"
+        weight = 3
 
 [markup]
   [markup.tableOfContents]

@@ -1,0 +1,26 @@
+# Curated subset of INV-03.b (forbidden synonyms) that is safe to check by
+# blind case-insensitive text search across published pages.
+#
+# Format: <glossary term><TAB><forbidden phrase>
+#
+# This list is deliberately NOT the full set of forbidden synonyms enumerated
+# in features/03-manual-do-metodo/epics/01-modelo-de-conteudo-e-linguagem-ubiqua/plan.md
+# section 5. A phrase is included here only when it has no legitimate,
+# independent meaning anywhere else in this site's English content. Phrases
+# left out (e.g. "README", "task", "feature", "user story", "best practices",
+# "guidelines", "source of truth", "monorepo") are real forbidden synonyms
+# too, but each one also names something this site legitimately talks about
+# elsewhere. "monorepo" is the clearest case: the source corpus's own
+# definition of Workspace explains the concept *by contrast* with monorepos
+# ("no generic monorepos, shielding the blast radius"), so any faithful page
+# describing the isolation pillar will legitimately use the word. A blind
+# text match on any of these would fail pages that use the word correctly,
+# which is a false failure — not the false pass this checker exists to
+# prevent, but still a broken gate. Those are enforced editorially instead:
+# see plan.md section 2, INV-03.a.
+Workspace	generic project folder
+Feature/Epic	sprint
+Domain Enabler	database designer
+Domain Enabler	Product Owner
+Spec	code comment
+Consequential Code	legacy code
