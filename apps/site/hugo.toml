@@ -48,6 +48,10 @@ publishDir = "public"
         name = "The Method"
         pageRef = "/method"
         weight = 3
+      [[languages.en.menus.main]]
+        name = "Guide"
+        pageRef = "/guide"
+        weight = 4
 
 [markup]
   [markup.tableOfContents]
